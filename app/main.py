@@ -1,9 +1,11 @@
 import copy
 import json
 import logging
+import os
 import re
 from pathlib import Path
 from urllib.error import URLError
+from urllib.parse import urlparse, urlunparse
 from urllib.request import Request as UrlRequest
 from urllib.request import urlopen
 
@@ -48,7 +50,21 @@ def build_sales_order(
     return order
 
 
+def webhook_url(url: str) -> str:
+    alias = os.environ.get("WEBHOOK_HOST_ALIAS", "").strip()
+    if not alias:
+        return url
+
+    parsed = urlparse(url)
+    if parsed.hostname not in {"127.0.0.1", "localhost"}:
+        return url
+
+    port = f":{parsed.port}" if parsed.port else ""
+    return urlunparse(parsed._replace(netloc=f"{alias}{port}"))
+
+
 def post_webhook(url: str, payload: dict) -> None:
+    url = webhook_url(url)
     data = json.dumps(payload).encode("utf-8")
     request = UrlRequest(
         url,
@@ -59,16 +75,18 @@ def post_webhook(url: str, payload: dict) -> None:
     try:
         with urlopen(request, timeout=15) as response:
             logger.info(
-                "webhook %s uuid=%s -> %s",
+                "webhook %s uuid=%s url=%s -> %s",
                 payload.get("salesOrderID"),
                 payload.get("UUID"),
+                url,
                 response.status,
             )
     except URLError as error:
         logger.error(
-            "webhook %s uuid=%s failed: %s",
+            "webhook %s uuid=%s url=%s failed: %s",
             payload.get("salesOrderID"),
             payload.get("UUID"),
+            url,
             error,
         )
 

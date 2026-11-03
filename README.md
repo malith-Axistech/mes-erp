@@ -13,6 +13,18 @@ uvicorn app.main:app --host 0.0.0.0 --port 8765
 
 Point MES at `http://host.docker.internal:8765/erp/sales-orders` (`LN_ERP_URL`). Keep `WEBHOOK_APP_URL` as the MES webhook, e.g. `http://127.0.0.1:8001/webhook`.
 
+## Docker
+
+```bash
+docker build -t mes-erp .
+docker run -d --name mes-erp --restart unless-stopped \
+  -p 8765:8765 \
+  -e WEBHOOK_HOST_ALIAS=host.docker.internal \
+  mes-erp
+```
+
+`WEBHOOK_HOST_ALIAS` rewrites a `127.0.0.1` or `localhost` webhook address so the container can reach MES on the Mac.
+
 Do not use `mes/scripts/sales-order-erp-simulator.py` for this flow.
 
 ## Endpoints
