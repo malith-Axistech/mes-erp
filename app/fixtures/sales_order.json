@@ -1,0 +1,48 @@
+{
+  "requestType": "salesOrder",
+  "companyCode": "100",
+  "salesOrderID": "VEN028045",
+  "businessParner": "BP0005053",
+  "businessParnerName": "FLOEW SRL",
+  "status": "In Process",
+  "salesRep": "740      ",
+  "salesRepName": "MARTINELLI GRETA                   ",
+  "lines": [
+    {
+      "lineNumber": 20,
+      "item": "TR00237588400000.                              ",
+      "itemDescription": "TTOE ECO+P 200  kVABIL125     Dyn11        NLTC 4% M PR",
+      "productType": "PF ",
+      "itemGroup": "G1480 ",
+      "itemGroupDescription": "PRODOTTI FINITI OLIO DISTRIBUZ",
+      "lot": "                    ",
+      "unit": "PZ ",
+      "orderedQuantity": 1,
+      "deliveredQuantity": 0,
+      "onHoldQuantity": 1,
+      "plannedDeliveryDate": "2026-12-07T15:22:00Z",
+      "plannedReceiptDate": "2026-12-15T15:22:00Z",
+      "customerOrder": "SX PESCARA                                                                                                              ",
+      "penaltyClause": "06       ",
+      "technicalTesting": "Collaudo non Presenziato"
+    },
+    {
+      "lineNumber": 40,
+      "item": "TR00237598400000.                              ",
+      "itemDescription": "TTOE ECO+P 250  kVABIL125     Dyn11        NLTC 4% M PR",
+      "productType": "PF ",
+      "itemGroup": "G1480 ",
+      "itemGroupDescription": "PRODOTTI FINITI OLIO DISTRIBUZ",
+      "lot": "                    ",
+      "unit": "PZ ",
+      "orderedQuantity": 2,
+      "deliveredQuantity": 0,
+      "onHoldQuantity": 2,
+      "plannedDeliveryDate": "2026-12-07T15:22:00Z",
+      "plannedReceiptDate": "2026-12-15T15:22:00Z",
+      "customerOrder": "SX PESCARA                                                                                                              ",
+      "penaltyClause": "06       ",
+      "technicalTesting": "Collaudo non Presenziato"
+    }
+  ]
+}
