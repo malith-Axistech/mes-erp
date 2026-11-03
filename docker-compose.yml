@@ -1,0 +1,10 @@
+services:
+  mes-erp:
+    build: .
+    image: mes-erp
+    container_name: mes-erp
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    environment:
+      WEBHOOK_HOST_ALIAS: host.docker.internal

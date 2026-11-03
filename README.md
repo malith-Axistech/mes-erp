@@ -16,11 +16,7 @@ Point MES at `http://host.docker.internal:8765/erp/sales-orders` (`LN_ERP_URL`).
 ## Docker
 
 ```bash
-docker build -t mes-erp .
-docker run -d --name mes-erp --restart unless-stopped \
-  -p 8765:8765 \
-  -e WEBHOOK_HOST_ALIAS=host.docker.internal \
-  mes-erp
+docker compose up -d
 ```
 
 `WEBHOOK_HOST_ALIAS` rewrites a `127.0.0.1` or `localhost` webhook address so the container can reach MES on the Mac.
